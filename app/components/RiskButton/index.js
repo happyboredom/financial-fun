@@ -10,10 +10,8 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Title } from '../commoncss'
 
-const Title = styled.h1`
-color:red;`
 class RiskButton extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
@@ -21,16 +19,16 @@ class RiskButton extends React.PureComponent { // eslint-disable-line react/pref
   }
   render() {
     return (
-      <div>
+      <div onClick={this.state.onClick}>
         <Title>{this.state.title}</Title>
-        {this.state.risk}
+        {this.state.value}
       </div>
     );
   }
 }
 
 RiskButton.propTypes = {
-  risk:PropTypes.integer
+  value:PropTypes.string,
 };
 
 export default RiskButton;

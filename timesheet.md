@@ -22,9 +22,11 @@ Hours 2-3: general tinkering with react components
  * from boilerplate ... `npm run generate`
  * Ecmascript 6/7 syntax is so different from what plain old JS...
 
-Hours 3-4:
+Hours 3-5:
 ----
 * how does a component interact with redux?
  * intro to redux... 2pm..
  * the `react-boilerplate` is very opinionated on structure. It is taking some time to understand what parts I need to edit.
- * creating my first reducer.
+ * look at `react-boilerplate` to create my first reducer.
+  * what is this package `reselect`? and why is it useful? https://www.npmjs.com/package/reselect
+  * 

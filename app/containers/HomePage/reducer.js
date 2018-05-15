@@ -1,24 +1,22 @@
 import { fromJS } from 'immutable';
 
 import {
-  CHANGE_LOCALE,
-} from './constants';
-import {
-  DEFAULT_LOCALE,
-} from '../App/constants'; // eslint-disable-line
+  RISK_PICKED,
+  DEFAULT_RISK,
+} from './constants'; 
 
 const initialState = fromJS({
-  locale: DEFAULT_LOCALE,
+  risklevel: DEFAULT_RISK,
 });
 
-function languageProviderReducer(state = initialState, action) {
+function riskSelectorReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_LOCALE:
+    case RISK_PICKED:
       return state
-        .set('locale', action.locale);
+        .set('risklevel', action.value);
     default:
       return state;
   }
 }
 
-export default languageProviderReducer;
+export default riskSelectorReducer;
