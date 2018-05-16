@@ -3,53 +3,39 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { createSelector } from 'reselect';
-
+import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
-import RiskButton from 'components/RiskButton'
-import messages from './messages';
+
+import RiskButton from 'components/RiskButton';
 import { riskSelector } from './selectors';
-import riskSelectorReducer from './reducer';
+import { setRiskLevel } from './actions';
+import reducer from './reducer';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-
-  chooseRisk(e) {
-    console.log("risk chosen", e);
-  }
-
+export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    console.log('foobar');
     return (
-      <div id="home">
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-        <RiskButton value="1" title="Most Left" onClick={this.chooseRisk} />
-        <RiskButton value="2" title="Left" onClick={this.chooseRisk}/>
-        <RiskButton value="3" title="Right" onClick={this.chooseRisk} />
-      </div>
+      <RiskButton title="Risk Level" value="1" onClick={this.props.onRiskSelect} />
     );
   }
 }
 
 HomePage.propTypes = {
-  risklevel: PropTypes.number,
+  onRiskSelect:PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
-// export function mapDispatchToProps(dispatch) {
-//   return {
-//     dispatch,
-//   };
-// }
-//
-// const mapStateToProps = createSelector(
-//   riskSelector(),
-//   (risklevel) => ({ risklevel })
-// );
-//
-// const withConnect = connect(mapStateToProps, mapDispatchToProps);
-// const withReducer = injectReducer({key: 'homepage', riskSelectorReducer })
-// export default compose(
-//     withReducer,
-//     withConnect,
-// )(HomePage);
+const mapStateToProps = createStructuredSelector({
+  homepage: riskSelector(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    onRiskSelect: (evt) => dispatch(changeRiskLevel(evt.target.value)),
+    dispatch,
+  };
+}
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReducer = injectReducer({key:'homePage', reducer});
+export default compose(withReducer, withConnect,)(HomePage);
+
+// export default (HomePage);

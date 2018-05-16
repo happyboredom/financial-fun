@@ -5,30 +5,25 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import PropTypes from 'prop-types';
+
 import { Title } from '../commoncss'
 
-class RiskButton extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
-    this.state = props
-  }
-  render() {
-    return (
-      <div onClick={this.state.onClick}>
-        <Title>{this.state.title}</Title>
-        {this.state.value}
-      </div>
-    );
-  }
+function RiskButton(props) {
+  return (
+    <label>
+      <Title>
+        <input name={props.name} type="radio" onClick={props.onClick} value={props.value} />
+        {props.title} {props.value}
+      </Title>
+    </label>
+  );
 }
 
 RiskButton.propTypes = {
-  value:PropTypes.string,
+  title: PropTypes.string,
+  value: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default RiskButton;
