@@ -15,7 +15,7 @@ const selectRisklevel = (state) => state.get('risklevel');
  * Default selector used by FunPage
  */
 
-const makeSelectRisklevel = () => createSelector(
+export const makeSelectRisklevel = () => createSelector(
   selectFunPageDomain,
   (substate) => {
     console.log('makeSelectRisklevel', substate);
@@ -23,14 +23,15 @@ const makeSelectRisklevel = () => createSelector(
   }
 );
 
-const makeSelectChartData = () => createSelector(
+export const makeSelectChartData = () => createSelector(
   selectFunPageDomain,
   (substate) => {
     console.log('makeSelectChartData', substate);
-    return substate.get('chartdata');
+    return substate.get('riskdata');
   }
 )
-export default makeSelectRisklevel;
+
+
 export {
   selectFunPageDomain,
 };

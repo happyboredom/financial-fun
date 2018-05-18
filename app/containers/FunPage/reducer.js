@@ -5,13 +5,14 @@
  */
 
 import { fromJS } from 'immutable';
-
+import {getRiskLevel} from './sampledata';
 import {
   RISK_PICKED,
 } from '../HomePage/constants';
 
 const initialState = fromJS({
-  risklevel: 0,
+  risklevel: 10,
+  riskdata: getRiskLevel(10),
 });
 
 function funPageReducer(state = initialState, action) {
@@ -19,8 +20,9 @@ function funPageReducer(state = initialState, action) {
   switch (action.type) {
     case RISK_PICKED:
       return state
-        .set('chartdata', [{key:'awesome', value:10}])
+        .set('riskdata', getRiskLevel(action.risklevel))
         .set('risklevel', action.risklevel);
+
     default:
       return state;
   }

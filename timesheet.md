@@ -38,3 +38,9 @@ Hours 8-10:
 * watch short video on youtube about redux mapStateToProps and mapDispatchToProps: makes total sense now. Now I'm in the groove.
 * Design Table view
 * Learn a little about css-grid
+
+Hours 11-12:
+----
+* tinkering with graphing libraries
+* now trying to connect the graph to the redux libraries
+* how can I move to page 2?

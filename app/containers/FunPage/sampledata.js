@@ -285,30 +285,34 @@ let sampledata = [
       {
         id:"stocksmallcap",
         key:"Small Cap Stock",
-        value:0,
+        value:30,
       },
       {
         id:"stockmidcap",
         key:"Mid Cap Stock",
-        value:0,
+        value:30,
       },
       {
         id:"stocklargecap",
         key:"Large Cap Stock",
-        value:10,
+        value:20,
       },
       {
         id:"stockforeign",
         key:"Foreign Stock",
-        value:0,
+        value:15,
       },
       {
         id:"bond",
         key:"Bonds",
-        value:90,
+        value:5,
       },
     ]
   },
 ];
+
+export function getRiskLevel(value) {
+  return sampledata.find( item => item.value == value)
+}
 
 export default sampledata;

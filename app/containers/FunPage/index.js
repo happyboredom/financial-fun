@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -13,7 +14,7 @@ import {PieChart} from 'react-easy-chart';
 
 // this module's components
 import injectReducer from 'utils/injectReducer';
-import makeSelectRisklevel from './selectors';
+import {makeSelectRisklevel, makeSelectChartData} from './selectors';
 import reducer from './reducer';
 import RiskButton from 'components/RiskButton';
 import RiskTable from 'components/RiskTable';
@@ -27,28 +28,39 @@ const MasterGrid = styled.div`
   display:grid;
   grid-template-rows: repeat(3, auto [row-start]);
   grid-template-areas: "one" "two" "three";`
+const OverflowScroll = styled.div`
+// iphone plus
+@media only screen and (max-width:414px) {
+  height:250px;
+  overflow:scroll;
+}
 
+`;
 
 export class FunPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    console.log('render props', this.props, sampledata[0].profile);
+    console.log('render props riskdata', this.props.riskdata);
+
+    let piechart = (this.props.riskdata
+            && this.props.riskdata.profile
+            && this.props.riskdata.profile.length > 0) ? (
+        <div>
+          <PieChart labels size={375} innerHoleSize={30}
+          data={this.props.riskdata.profile}
+          styles={{'.chart_text':{fontSize:'1em', fill:'#fff' }}}/>
+          <Link to="/allocation">Adjust allocation</Link>
+        </div>
+      ) : (
+          <div></div>
+      )
+
     return (
       <MasterGrid>
         <h1>Choose option {this.props.risklevel}</h1>
-        <RiskTable formname="risk" data={sampledata} onClick={this.props.onRiskSelect}></RiskTable>
-        <PieChart
-          labels
-          size={400}
-          innerHoleSize={200}
-          data={[
-            {key:'Abra', value:100, color:'#eee'},
-            {key:'Cadabra', value:50, color:'#ddd'}
-          ]}
-          styles={{'.chart_text':{
-            fontSize:'1em',
-            fill:'#fff'
-          }
-          }} />
+        <OverflowScroll>
+          <RiskTable formname="risk" data={sampledata} onClick={this.props.onRiskSelect}></RiskTable>
+        </OverflowScroll>
+        {piechart}
         <footer>jl &copy; 2018</footer>
       </MasterGrid>
     );
@@ -63,6 +75,7 @@ FunPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   risklevel: makeSelectRisklevel(),
+  riskdata: makeSelectChartData(),
 });
 
 function mapDispatchToProps(dispatch) {
