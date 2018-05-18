@@ -5,9 +5,6 @@
  */
 
 import { fromJS } from 'immutable';
-import {
-  DEFAULT_ACTION,
-} from './constants';
 
 import {
   RISK_PICKED,
@@ -18,14 +15,11 @@ const initialState = fromJS({
 });
 
 function funPageReducer(state = initialState, action) {
+  console.log(`funPageReducer::${action.type}=${action.risklevel}`);
   switch (action.type) {
-    case DEFAULT_ACTION:
-      console.log(`funPageReducer::${DEFAULT_ACTION}=${action.risklevel}`);
-      return state
-        .set('risklevel', action.risklevel);
     case RISK_PICKED:
-      console.log(`funPageReducer::${RISK_PICKED}=${action.risklevel}`);
       return state
+        .set('chartdata', [{key:'awesome', value:10}])
         .set('risklevel', action.risklevel);
     default:
       return state;

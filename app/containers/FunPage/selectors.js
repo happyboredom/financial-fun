@@ -23,6 +23,13 @@ const makeSelectRisklevel = () => createSelector(
   }
 );
 
+const makeSelectChartData = () => createSelector(
+  selectFunPageDomain,
+  (substate) => {
+    console.log('makeSelectChartData', substate);
+    return substate.get('chartdata');
+  }
+)
 export default makeSelectRisklevel;
 export {
   selectFunPageDomain,

@@ -33,5 +33,8 @@ Hours 3-7:
   * start a new component, appears to be working. Still don't know why the original stopped working. Sometimes that's just how it goes. Having stared at this react/redux code for a couple of hours trying to identify the problem I am more familiar with its patterns.
 
 
-Hours 8:
+Hours 8-10:
 ----
+* watch short video on youtube about redux mapStateToProps and mapDispatchToProps: makes total sense now. Now I'm in the groove.
+* Design Table view
+* Learn a little about css-grid

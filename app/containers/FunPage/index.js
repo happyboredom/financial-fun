@@ -9,33 +9,48 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import Slider from 'react-rangeslider';
-import 'react-rangeslider/lib/index.css'
+import {PieChart} from 'react-easy-chart';
 
+// this module's components
 import injectReducer from 'utils/injectReducer';
 import makeSelectRisklevel from './selectors';
 import reducer from './reducer';
 import RiskButton from 'components/RiskButton';
 import RiskTable from 'components/RiskTable';
 import { setRiskLevel } from '../HomePage/actions';
+import sampledata from './sampledata';
+
+// CSS & Presentation
+import styled from 'styled-components';
+import 'react-rangeslider/lib/index.css'
+const MasterGrid = styled.div`
+  display:grid;
+  grid-template-rows: repeat(3, auto [row-start]);
+  grid-template-areas: "one" "two" "three";`
+
 
 export class FunPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    console.log('render props', this.props);
+    console.log('render props', this.props, sampledata[0].profile);
     return (
-      <div>
-        <h1>Choose your risk tolerance. {this.props.risklevel}</h1>
-        <p>1 = Lowest Risk, 10 = highest risk.</p>
-        <div>
-          <Slider
-            orientation="vertical"
-            min={1}
-            max={10}
-            step={1}
-            value={this.props.risklevel}
-            onChange={this.props.onRiskSelect} />
-          </div>
-      </div>
+      <MasterGrid>
+        <h1>Choose option {this.props.risklevel}</h1>
+        <RiskTable formname="risk" data={sampledata} onClick={this.props.onRiskSelect}></RiskTable>
+        <PieChart
+          labels
+          size={400}
+          innerHoleSize={200}
+          data={[
+            {key:'Abra', value:100, color:'#eee'},
+            {key:'Cadabra', value:50, color:'#ddd'}
+          ]}
+          styles={{'.chart_text':{
+            fontSize:'1em',
+            fill:'#fff'
+          }
+          }} />
+        <footer>jl &copy; 2018</footer>
+      </MasterGrid>
     );
   }
 }
@@ -53,7 +68,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onRiskSelect: (evt) => {
-      return dispatch(setRiskLevel(evt))
+      return dispatch(setRiskLevel(evt.target.value))
     },
     dispatch,
   };
