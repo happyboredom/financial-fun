@@ -45,3 +45,7 @@ Hours 11-13:
 * now trying to connect the graph to the redux libraries
 * how can I move to page 2?
 * nested redux state to sum the total...
+
+Hours 14-16:
+---
+* fiddling around with displaying data and refactoring sampledata

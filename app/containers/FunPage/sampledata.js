@@ -1,3 +1,43 @@
+const labels = {
+  stocksmallcap:"Small Cap",
+  stockmidcap:"Mid Cap",
+  stocklargecap:"Large Cap",
+  stockforeign:"Foreign",
+  bond:"Bonds",
+}
+
+export function getAllocationLabel(id) {
+  return labels[id];
+};
+
+/*
+Converts map into chart-compatible output.
+Input: A map
+{
+key1:val1,
+key2:val2,
+}
+
+Output: An array of the key/vals suitable for chart.
+{
+  id:key1,
+  value:val1,
+  key:label1,
+}
+*/
+export function convertToChartData(myData, labelFunc = getAllocationLabel) {
+  return Object
+    .entries(myData)
+    .map(
+      (obj, index) => {
+        return {
+          id:obj[0],
+          value:obj[1],
+          key:labelFunc(obj[0])
+        }
+      });
+}
+
 let sampledata = [
   {
     label:"Minimum Risk",
@@ -124,66 +164,26 @@ let sampledata = [
     ]
   },
   {
-    label:"Low Risk",
+    label:"Middle Risk",
     value:5,
-    profile:[
-      {
-        id:"stocksmallcap",
-        key:"Small Cap Stock",
-        value:0,
-      },
-      {
-        id:"stockmidcap",
-        key:"Mid Cap Stock",
-        value:0,
-      },
-      {
-        id:"stocklargecap",
-        key:"Large Cap Stock",
-        value:10,
-      },
-      {
-        id:"stockforeign",
-        key:"Foreign Stock",
-        value:0,
-      },
-      {
-        id:"bond",
-        key:"Bonds",
-        value:90,
-      },
-    ]
+    profile:{
+      stocksmallcap:20,
+      stockmidcap:20,
+      stocklargecap:20,
+      stockforeign:20,
+      bond:20,
+    }
   },
   {
-    label:"Low Risk",
+    label:"Middle Risk Level 1",
     value:6,
-    profile:[
-      {
-        id:"stocksmallcap",
-        key:"Small Cap Stock",
-        value:0,
-      },
-      {
-        id:"stockmidcap",
-        key:"Mid Cap Stock",
-        value:0,
-      },
-      {
-        id:"stocklargecap",
-        key:"Large Cap Stock",
-        value:10,
-      },
-      {
-        id:"stockforeign",
-        key:"Foreign Stock",
-        value:0,
-      },
-      {
-        id:"bond",
-        key:"Bonds",
-        value:90,
-      },
-    ]
+    profile:{
+      stocksmallcap:20,
+      stockmidcap:20,
+      stocklargecap:20,
+      stockforeign:25,
+      bond:15,
+    }
   },
   {
     label:"Low Risk",
@@ -315,12 +315,8 @@ export function getRiskLevel(value) {
   return sampledata.find( item => item.value == value)
 }
 
-export default sampledata;
+export function getRiskLevelProfile(value) {
+  return getRiskLevel(value).profile;
+}
 
-export const sampleAllocation = {
-  stocksmallcap:10,
-  stockmidcap:10,
-  stocklargecap:20,
-  stockforeign:10,
-  bond:10,
-};
+export default sampledata;

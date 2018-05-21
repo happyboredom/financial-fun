@@ -13,11 +13,12 @@ import {
   DEFAULT_RISK,
 } from '../HomePage/constants';
 
-import {sampleAllocation} from '../FunPage/sampledata';
+import {getRiskLevel, getRiskLevelProfile} from '../FunPage/sampledata';
 
 const initialState = fromJS({
-  allocations:sampleAllocation,
-  risklevel:DEFAULT_RISK
+  allocations:getRiskLevelProfile(DEFAULT_RISK),
+  risklevel:DEFAULT_RISK,
+  riskdata: getRiskLevel(DEFAULT_RISK),
 });
 
 const PROP_ALLOCATIONS = 'allocations';

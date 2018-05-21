@@ -1,4 +1,6 @@
 import { createSelector } from 'reselect';
+import {DEFAULT_RISK} from '../HomePage/constants';
+import {getRiskLevel} from '../FunPage/sampledata';
 
 /**
  * Direct selector to the funPage state domain
@@ -18,19 +20,33 @@ const selectRisklevel = (state) => state.get('risklevel');
 export const makeSelectRisklevel = () => createSelector(
   selectFunPageDomain,
   (substate) => {
-    console.log('makeSelectRisklevel', substate);
-    return parseInt(substate.get('risklevel'));
+    if (substate == undefined) {
+      // will be undefined if I got to this page
+      // without doing step 1.
+      return DEFAULT_RISK;
+    }
+
+    let risklevel = substate.get('risklevel');
+    if (risklevel == undefined) {
+      return DEFAULT_RISK;
+    } else {
+      return parseInt(risklevel);
+    }
   }
 );
 
 export const makeSelectChartData = () => createSelector(
   selectFunPageDomain,
   (substate) => {
-    console.log('makeSelectChartData', substate);
+    if (substate == undefined) {
+      // will be undefined if I got to this page
+      // without doing step 1.
+      return getRiskLevel(DEFAULT_RISK);
+    }
+
     return substate.get('riskdata');
   }
 )
-
 
 export {
   selectFunPageDomain,

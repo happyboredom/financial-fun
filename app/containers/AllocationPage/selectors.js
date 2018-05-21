@@ -1,12 +1,10 @@
 import { createSelector } from 'reselect';
+import {
+  DEFAULT_RISK,
+} from '../HomePage/constants';
 
 const selectAllocationPageDomain = (state) => state.get('allocationPage');
-import {sampleAllocation} from '../FunPage/sampledata';
-
-
-const calculate = () => {
-  return;
-}
+import {getRiskLevel} from '../FunPage/sampledata';
 
 const sum = (values) => {
   return values.reduce((acc, cur) => { return acc+cur}, 0);
@@ -16,11 +14,11 @@ export const makeSelectAllocationPage = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
     let allocations = substate.get('allocations');
-    if ( allocations != undefined ) {
-      return allocations.toJS();
-    } else {
-      return sampleAllocation;
+    if ( allocations == undefined ) {
+      return getRiskLevel(DEFAULT_RISK);
     }
+
+    return allocations.toJS();
   }
 );
 
@@ -28,14 +26,23 @@ export const sumAllocations = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
     let allocations = substate.get('allocations');
-    if ( allocations != undefined ) {
-      return sum(Object.values(allocations.toJS()))
-    } else {
+    if ( allocations == undefined ) {
       return 0;
     }
-    return substate;
+    return sum(Object.values(allocations.toJS()))
   }
 );
+
+export const makeInstructionData = () => createSelector(
+  selectAllocationPageDomain,
+  (substate) => {
+    let allocations = substate.get('allocations');
+    if ( allocations == undefined ) {
+      return 0;
+    }
+    return sum(Object.values(allocations.toJS()))
+  }
+)
 
 export {
   selectAllocationPageDomain,

@@ -11,8 +11,8 @@ import {
 } from '../HomePage/constants';
 
 const initialState = fromJS({
-  risklevel: 10,
-  riskdata: getRiskLevel(10),
+  risklevel: 5,
+  riskdata: getRiskLevel(5),
 });
 
 function funPageReducer(state = initialState, action) {

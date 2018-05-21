@@ -38,8 +38,6 @@ const OverflowScroll = styled.div`
 
 export class FunPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    console.log('render props riskdata', this.props.riskdata);
-
     let piechart = (this.props.riskdata
             && this.props.riskdata.profile
             && this.props.riskdata.profile.length > 0) ? (
