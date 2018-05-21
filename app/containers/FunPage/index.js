@@ -34,7 +34,6 @@ const OverflowScroll = styled.div`
   height:250px;
   overflow:scroll;
 }
-
 `;
 
 export class FunPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function

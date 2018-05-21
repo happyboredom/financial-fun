@@ -316,3 +316,11 @@ export function getRiskLevel(value) {
 }
 
 export default sampledata;
+
+export const sampleAllocation = {
+  stocksmallcap:10,
+  stockmidcap:10,
+  stocklargecap:20,
+  stockforeign:10,
+  bond:10,
+};

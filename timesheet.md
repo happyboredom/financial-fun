@@ -39,8 +39,9 @@ Hours 8-10:
 * Design Table view
 * Learn a little about css-grid
 
-Hours 11-12:
+Hours 11-13:
 ----
 * tinkering with graphing libraries
 * now trying to connect the graph to the redux libraries
 * how can I move to page 2?
+* nested redux state to sum the total...

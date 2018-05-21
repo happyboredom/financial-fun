@@ -1,25 +1,42 @@
 import { createSelector } from 'reselect';
 
-/**
- * Direct selector to the allocationPage state domain
- */
 const selectAllocationPageDomain = (state) => state.get('allocationPage');
-
-/**
- * Other specific selectors
- */
+import {sampleAllocation} from '../FunPage/sampledata';
 
 
-/**
- * Default selector used by AllocationPage
- */
+const calculate = () => {
+  return;
+}
 
-const makeSelectAllocationPage = () => createSelector(
+const sum = (values) => {
+  return values.reduce((acc, cur) => { return acc+cur}, 0);
+}
+
+export const makeSelectAllocationPage = () => createSelector(
   selectAllocationPageDomain,
-  (substate) => substate.toJS()
+  (substate) => {
+    let allocations = substate.get('allocations');
+    if ( allocations != undefined ) {
+      return allocations.toJS();
+    } else {
+      return sampleAllocation;
+    }
+  }
 );
 
-export default makeSelectAllocationPage;
+export const sumAllocations = () => createSelector(
+  selectAllocationPageDomain,
+  (substate) => {
+    let allocations = substate.get('allocations');
+    if ( allocations != undefined ) {
+      return sum(Object.values(allocations.toJS()))
+    } else {
+      return 0;
+    }
+    return substate;
+  }
+);
+
 export {
   selectAllocationPageDomain,
 };

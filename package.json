@@ -227,6 +227,7 @@
     "ip": "1.1.5",
     "lodash": "4.17.4",
     "minimist": "1.2.0",
+    "normalizr": "^3.2.4",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-d3-basic": "^1.6.11",

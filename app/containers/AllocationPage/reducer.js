@@ -9,12 +9,26 @@ import {
   DEFAULT_ACTION,
 } from './constants';
 
-const initialState = fromJS({});
+import {
+  DEFAULT_RISK,
+} from '../HomePage/constants';
+
+import {sampleAllocation} from '../FunPage/sampledata';
+
+const initialState = fromJS({
+  allocations:sampleAllocation,
+  risklevel:DEFAULT_RISK
+});
+
+const PROP_ALLOCATIONS = 'allocations';
 
 function allocationPageReducer(state = initialState, action) {
+  let temp = state.get(PROP_ALLOCATIONS);
   switch (action.type) {
     case DEFAULT_ACTION:
-      return state;
+      // setIn will update the nested "allocations" object
+      return state
+        .setIn([PROP_ALLOCATIONS, action.name], parseInt(action.value));
     default:
       return state;
   }
