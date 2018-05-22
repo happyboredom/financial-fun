@@ -1,9 +1,4 @@
-/*
- *
- * FunPage reducer
- *
- */
-
+/* FunPage/reducer.js */
 import { fromJS } from 'immutable';
 import {
     getRiskLevel,
@@ -21,6 +16,7 @@ const initialState = fromJS({
 
 function funPageReducer(state = initialState, action) {
   console.log(`funPageReducer::${action.type}=${action.risklevel}`);
+  console.log('funPageReducer state', state);
   switch (action.type) {
     case RISK_PICKED:
       return state

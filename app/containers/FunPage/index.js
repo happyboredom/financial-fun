@@ -39,6 +39,7 @@ const OverflowScroll = styled.div`
 export class FunPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     let piechart = convertToChartData(this.props.riskdata);
+    console.log('piechart riskdata', this.props.riskdata);
     piechart = (piechart.length > 0) ? (
         <div>
           <PieChart labels size={375} innerHoleSize={30}

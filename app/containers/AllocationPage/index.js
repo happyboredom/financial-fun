@@ -40,7 +40,7 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
         Object.entries(this.props.allocations)
           .map((object, i) => {
             let percentAllocated = (object[1] / this.props.total) * 100;
-            let targetRisk = this.props.riskdata.profile[object[0]];
+            let targetRisk = this.props.riskdata[object[0]];
             let difference = <span></span>
             let targetCash = this.props.total * (targetRisk/100);
             let targetDifference = targetCash - object[1];

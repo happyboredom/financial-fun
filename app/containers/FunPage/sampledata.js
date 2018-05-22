@@ -11,11 +11,6 @@ export function getAllocationLabel(id) {
 };
 
 
-
-export function getRiskLevelProfile(value) {
-  return getRiskLevel(value).profile;
-}
-
 /*
 Converts map into chart-compatible output.
 Input: A map
@@ -45,11 +40,12 @@ export function convertToChartData(myData, labelFunc = getAllocationLabel) {
 }
 
 export function convertToTableData(myData) {
-  console.log("convertToTableData", myData);
+  // console.log("convertToTableData", myData);
   return myData.map(
       (object, i) => {
-        console.log("convertToTableData", object);
-        let object_copy = object;
+        // need to COPY this object
+        // mutation will have bad effects.
+        let object_copy = Object.assign({}, object);
         object_copy['profile'] = convertToChartData(object['profile']);
         return object_copy;
       });
@@ -159,11 +155,11 @@ const sampledata = [
     label:"Maximum Risk",
     value:10,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
-      stocklargecap:20,
-      stockforeign:20,
-      bond:20,
+      stocksmallcap:30,
+      stockmidcap:30,
+      stocklargecap:10,
+      stockforeign:30,
+      bond:0,
     }
   },
 ];
@@ -174,4 +170,8 @@ export {
 
 export function getRiskLevel(value) {
   return sampledata.find( item => item.value == value)
+}
+
+export function getRiskLevelProfile(value) {
+  return getRiskLevel(value).profile;
 }
