@@ -46,7 +46,7 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
             let targetDifference = targetCash - object[1];
             if (percentAllocated.toFixed(2) !== targetRisk.toFixed(2))
             {
-              difference = <span>${targetDifference.toFixed(2)}</span>
+              difference = (<span>{targetDifference.toFixed(2)}</span>)
             }
             return (<tr key={i}>
               <td><label>{object[0]}</label></td>

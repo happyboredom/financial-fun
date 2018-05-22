@@ -7,6 +7,7 @@
 import { fromJS } from 'immutable';
 import {
   DEFAULT_ACTION,
+  PROP_ALLOCATIONS,
 } from './constants';
 
 import {
@@ -20,8 +21,6 @@ const initialState = fromJS({
   risklevel:DEFAULT_RISK,
   riskdata: getRiskLevel(DEFAULT_RISK),
 });
-
-const PROP_ALLOCATIONS = 'allocations';
 
 function allocationPageReducer(state = initialState, action) {
   let temp = state.get(PROP_ALLOCATIONS);

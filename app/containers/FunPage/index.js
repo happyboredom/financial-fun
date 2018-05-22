@@ -19,7 +19,7 @@ import reducer from './reducer';
 import RiskButton from 'components/RiskButton';
 import RiskTable from 'components/RiskTable';
 import { setRiskLevel } from '../HomePage/actions';
-import sampledata from './sampledata';
+import {convertToTableData, convertToChartData, sampledata} from './sampledata';
 
 // CSS & Presentation
 import styled from 'styled-components';
@@ -38,24 +38,23 @@ const OverflowScroll = styled.div`
 
 export class FunPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    let piechart = (this.props.riskdata
-            && this.props.riskdata.profile
-            && this.props.riskdata.profile.length > 0) ? (
+    let piechart = convertToChartData(this.props.riskdata);
+    piechart = (piechart.length > 0) ? (
         <div>
           <PieChart labels size={375} innerHoleSize={30}
-          data={this.props.riskdata.profile}
+          data={piechart}
           styles={{'.chart_text':{fontSize:'1em', fill:'#fff' }}}/>
           <Link to="/allocation">Adjust allocation</Link>
         </div>
       ) : (
           <div></div>
       )
-
+    console.log("funpage render", sampledata);
     return (
       <MasterGrid>
         <h1>Choose option {this.props.risklevel}</h1>
         <OverflowScroll>
-          <RiskTable formname="risk" data={sampledata} onClick={this.props.onRiskSelect}></RiskTable>
+          <RiskTable formname="risk" data={convertToTableData(sampledata)} onClick={this.props.onRiskSelect}></RiskTable>
         </OverflowScroll>
         {piechart}
         <footer>jl &copy; 2018</footer>

@@ -41,10 +41,10 @@ export const makeSelectChartData = () => createSelector(
     if (substate == undefined) {
       // will be undefined if I got to this page
       // without doing step 1.
-      return getRiskLevel(DEFAULT_RISK);
+      return getRiskLevelProfile(DEFAULT_RISK);
     }
 
-    return substate.get('riskdata');
+    return substate.get('riskdata').toJS();
   }
 )
 

@@ -1,5 +1,9 @@
 import { createSelector } from 'reselect';
 import {
+  PROP_ALLOCATIONS,
+} from './constants';
+
+import {
   DEFAULT_RISK,
 } from '../HomePage/constants';
 
@@ -13,7 +17,7 @@ const sum = (values) => {
 export const makeSelectAllocationPage = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
-    let allocations = substate.get('allocations');
+    let allocations = substate.get(PROP_ALLOCATIONS);
     if ( allocations == undefined ) {
       return getRiskLevel(DEFAULT_RISK);
     }
@@ -25,7 +29,7 @@ export const makeSelectAllocationPage = () => createSelector(
 export const sumAllocations = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
-    let allocations = substate.get('allocations');
+    let allocations = substate.get(PROP_ALLOCATIONS);
     if ( allocations == undefined ) {
       return 0;
     }
@@ -36,11 +40,11 @@ export const sumAllocations = () => createSelector(
 export const makeInstructionData = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
-    let allocations = substate.get('allocations');
+    let allocations = substate.get(PROP_ALLOCATIONS);
     if ( allocations == undefined ) {
-      return 0;
+      return [];
     }
-    return sum(Object.values(allocations.toJS()))
+    return [];
   }
 )
 
