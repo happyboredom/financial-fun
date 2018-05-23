@@ -53,7 +53,7 @@ export function convertToTableData(myData) {
 
 const sampledata = [
   {
-    label:"Minimum Risk",
+    label:"Most conservative",
     value:1,
     profile:{
       stocksmallcap:0,
@@ -64,7 +64,7 @@ const sampledata = [
     }
   },
   {
-    label:"Low Risk",
+    label:"Very conservative",
     value:2,
     profile:{
       stocksmallcap:0,
@@ -75,7 +75,7 @@ const sampledata = [
     }
   },
   {
-    label:"Low Risk",
+    label:"More conservative",
     value:3,
     profile:{
       bond:60,
@@ -86,7 +86,7 @@ const sampledata = [
     }
   },
   {
-    label:"Low Risk",
+    label:"Conservative",
     value:4,
     profile:{
       bond:50,
@@ -97,7 +97,7 @@ const sampledata = [
     }
   },
   {
-    label:"Middle Risk",
+    label:"Slightly conservative",
     value:5,
     profile:{
       bond:40,
@@ -108,7 +108,7 @@ const sampledata = [
     }
   },
   {
-    label:"Middle Risk Level 1",
+    label:"Slightly Aggressive",
     value:6,
     profile:{
       bond:35,
@@ -119,7 +119,7 @@ const sampledata = [
     }
   },
   {
-    label:"Low Risk",
+    label:"Aggressive",
     value:7,
     profile:{
       bond:20,
@@ -130,7 +130,7 @@ const sampledata = [
     }
   },
   {
-    label:"Low Risk",
+    label:"More aggressive",
     value:8,
     profile:{
       bond:10,
@@ -141,7 +141,7 @@ const sampledata = [
     }
   },
   {
-    label:"High Risk",
+    label:"Very aggressive",
     value:9,
     profile:{
       bond:5,
@@ -152,7 +152,7 @@ const sampledata = [
     }
   },
   {
-    label:"Maximum Risk",
+    label:"Most aggressive",
     value:10,
     profile:{
       bond:0,

@@ -8,11 +8,12 @@ import { fromJS } from 'immutable';
 import {
   DEFAULT_ACTION,
   PROP_ALLOCATIONS,
+  CALCULATE_ALLOCATIONS_ACTION,
 } from './constants';
 
 import {
   DEFAULT_RISK,
-} from '../HomePage/constants';
+} from '../RiskPage/constants';
 
 import {getRiskLevel, getRiskLevelProfile} from '../RiskPage/sampledata';
 
@@ -35,6 +36,15 @@ function allocationPageReducer(state = initialState, action) {
       // setIn will update the nested "allocations" object
       return state
         .setIn([PROP_ALLOCATIONS, action.name], parseInt(action.value));
+
+    case CALCULATE_ALLOCATIONS_ACTION:
+      let newstate = state;
+      Object.entries(action.value)
+        .forEach( (obj) => {
+          newstate = state.setIn([PROP_ALLOCATIONS, obj[0]], obj[1]);
+          state = newstate;
+        });
+      return state;
     default:
       return state;
   }

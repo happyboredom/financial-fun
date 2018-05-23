@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { PROP_ALLOCATIONS, TRANSACTION_COST } from './constants';
-import { DEFAULT_RISK } from '../HomePage/constants';
+import { DEFAULT_RISK } from '../RiskPage/constants';
 import { getRiskLevel, getAllocationLabel } from '../RiskPage/sampledata';
 import { makeSelectRisklevel, makeSelectChartData } from '../RiskPage/selectors';
 
@@ -15,7 +15,6 @@ export const selectRiskAllocations = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
     let allocations = substate.get(PROP_ALLOCATIONS);
-    console.log('allocations', allocations);
     if ( allocations == undefined ) {
       return {};
     }
@@ -31,14 +30,20 @@ export const sumAllocations = () => createSelector(
   }
 );
 
+export const selectRiskSummary = () => createSelector(
+  selectAllocationPageDomain,
+  makeSelectRisklevel(),
+  (state, risklevel) => {
+    return getRiskLevel(risklevel);
+  }
+);
+
 export const selectTargetRisk = () => createSelector(
   selectAllocationPageDomain,
   selectRiskAllocations(),
   makeSelectChartData(),
   sumAllocations(),
-  (state, inputAllocations, risklevel, sumTotal) =>
-  {
-    console.log('inputAllocations', inputAllocations);
+  (state, inputAllocations, risklevel, sumTotal) => {
     return Object.entries(inputAllocations)
       .map((object, i) =>
       {
@@ -62,16 +67,6 @@ export const selectTargetRisk = () => createSelector(
           };
       });
   });
-
-export const makeInstructionData = () => createSelector(
-  selectRiskAllocations,
-  makeSelectChartData,
-  (allocations, riskdata) => (
-    {
-    allocations,
-    riskdata
-  })
-)
 
 export {
   selectAllocationPageDomain,

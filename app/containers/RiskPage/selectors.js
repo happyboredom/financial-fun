@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
-import {DEFAULT_RISK} from '../HomePage/constants';
+import {DEFAULT_RISK} from '../RiskPage/constants';
 import {getRiskLevel, getRiskLevelProfile} from '../RiskPage/sampledata';
 
 /**

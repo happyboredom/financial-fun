@@ -7,7 +7,7 @@ import {
 import {
   RISK_PICKED,
   DEFAULT_RISK,
-} from '../HomePage/constants';
+} from '../RiskPage/constants';
 
 const initialState = fromJS({
   risklevel: DEFAULT_RISK,
