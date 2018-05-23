@@ -1,51 +1,76 @@
 import { createSelector } from 'reselect';
-import {
-  PROP_ALLOCATIONS,
-} from './constants';
 
-import {
-  DEFAULT_RISK,
-} from '../HomePage/constants';
+import { PROP_ALLOCATIONS, TRANSACTION_COST } from './constants';
+import { DEFAULT_RISK } from '../HomePage/constants';
+import { getRiskLevel, getAllocationLabel } from '../RiskPage/sampledata';
+import { makeSelectRisklevel, makeSelectChartData } from '../RiskPage/selectors';
 
 const selectAllocationPageDomain = (state) => state.get('allocationPage');
-import {getRiskLevel} from '../FunPage/sampledata';
 
 const sum = (values) => {
   return values.reduce((acc, cur) => { return acc+cur}, 0);
 }
 
-export const makeSelectAllocationPage = () => createSelector(
+export const selectRiskAllocations = () => createSelector(
   selectAllocationPageDomain,
   (substate) => {
     let allocations = substate.get(PROP_ALLOCATIONS);
+    console.log('allocations', allocations);
     if ( allocations == undefined ) {
-      return getRiskLevel(DEFAULT_RISK);
+      return {};
     }
-
     return allocations.toJS();
   }
 );
 
 export const sumAllocations = () => createSelector(
-  selectAllocationPageDomain,
-  (substate) => {
-    let allocations = substate.get(PROP_ALLOCATIONS);
-    if ( allocations == undefined ) {
-      return 0;
-    }
-    return sum(Object.values(allocations.toJS()))
+  selectRiskAllocations(),
+  (allocations) => {
+    let val = sum(Object.values(allocations));
+    return val
   }
 );
 
-export const makeInstructionData = () => createSelector(
+export const selectTargetRisk = () => createSelector(
   selectAllocationPageDomain,
-  (substate) => {
-    let allocations = substate.get(PROP_ALLOCATIONS);
-    if ( allocations == undefined ) {
-      return [];
-    }
-    return [];
-  }
+  selectRiskAllocations(),
+  makeSelectChartData(),
+  sumAllocations(),
+  (state, inputAllocations, risklevel, sumTotal) =>
+  {
+    console.log('inputAllocations', inputAllocations);
+    return Object.entries(inputAllocations)
+      .map((object, i) =>
+      {
+          let inputAlloc = object[0];
+          let inputVal = object[1];
+          let currentPerAllocated = 0;
+          if (sumTotal > 0) {
+            currentPerAllocated = (inputVal / sumTotal) * 100;
+          }
+          let targetAlloc = risklevel[inputAlloc];
+          let targetCash = sumTotal * (targetAlloc/100);
+          let targetDifference = targetCash - inputVal;
+          return {
+            name:getAllocationLabel(inputAlloc),
+            category:inputAlloc,
+            currentCash:inputVal,
+            currentPerAllocated,
+            targetCash,
+            targetAlloc,
+            targetDifference,
+          };
+      });
+  });
+
+export const makeInstructionData = () => createSelector(
+  selectRiskAllocations,
+  makeSelectChartData,
+  (allocations, riskdata) => (
+    {
+    allocations,
+    riskdata
+  })
 )
 
 export {

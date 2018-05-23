@@ -14,7 +14,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import FunPage from 'containers/FunPage/Loadable';
+import FunPage from 'containers/RiskPage/Loadable';
 import AllocationPage from 'containers/AllocationPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 

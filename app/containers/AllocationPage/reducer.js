@@ -14,10 +14,16 @@ import {
   DEFAULT_RISK,
 } from '../HomePage/constants';
 
-import {getRiskLevel, getRiskLevelProfile} from '../FunPage/sampledata';
+import {getRiskLevel, getRiskLevelProfile} from '../RiskPage/sampledata';
 
 const initialState = fromJS({
-  allocations:getRiskLevelProfile(DEFAULT_RISK),
+  allocations:{
+    bond:0,
+    stocklargecap:0,
+    stockmidcap:0,
+    stockforeign:0,
+    stocksmallcap:0,
+  },
   risklevel:DEFAULT_RISK,
   riskdata: getRiskLevel(DEFAULT_RISK),
 });

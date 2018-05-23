@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import { createSelector } from 'reselect';
 import {DEFAULT_RISK} from '../HomePage/constants';
-import {getRiskLevel} from '../FunPage/sampledata';
+import {getRiskLevel, getRiskLevelProfile} from '../RiskPage/sampledata';
 
 /**
  * Direct selector to the funPage state domain
@@ -33,17 +33,14 @@ export const makeSelectChartData = () => createSelector(
     if (substate == undefined) {
       // will be undefined if I got to this page
       // without doing step 1.
-      console.log("makeSelectChartData:substate not defined");
       return getRiskLevelProfile(DEFAULT_RISK);
     }
     let ssub = substate.get('riskdata');
     try {
       ssub = ssub.toJS();
       ssub = convertToChartData(ssub);
-      console.log('makeSelectChartData::ssub did toJS');
     } catch (err) {
     }
-    console.log('makeSelectChartData::ssub', ssub);
     return ssub;
   }
 )

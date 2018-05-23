@@ -56,110 +56,110 @@ const sampledata = [
     label:"Minimum Risk",
     value:1,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
+      stocksmallcap:0,
+      stockmidcap:0,
       stocklargecap:20,
-      stockforeign:20,
-      bond:20,
+      stockforeign:0,
+      bond:80,
     }
   },
   {
     label:"Low Risk",
     value:2,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
-      stocklargecap:20,
-      stockforeign:20,
-      bond:20,
+      stocksmallcap:0,
+      stockmidcap:15,
+      stocklargecap:15,
+      stockforeign:0,
+      bond:70,
     }
   },
   {
     label:"Low Risk",
     value:3,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
-      stocklargecap:20,
-      stockforeign:20,
-      bond:20,
+      bond:60,
+      stocklargecap:15,
+      stockmidcap:15,
+      stockforeign:10,
+      stocksmallcap:0,
     }
   },
   {
     label:"Low Risk",
     value:4,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
+      bond:50,
       stocklargecap:20,
-      stockforeign:20,
-      bond:20,
+      stockmidcap:20,
+      stockforeign:10,
+      stocksmallcap:0,
     }
   },
   {
     label:"Middle Risk",
     value:5,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
+      bond:40,
       stocklargecap:20,
+      stockmidcap:20,
       stockforeign:20,
-      bond:20,
+      stocksmallcap:0,
     }
   },
   {
     label:"Middle Risk Level 1",
     value:6,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
-      stocklargecap:20,
-      stockforeign:25,
-      bond:15,
+      bond:35,
+      stocklargecap:25,
+      stockmidcap:5,
+      stockforeign:30,
+      stocksmallcap:5,
     }
   },
   {
     label:"Low Risk",
     value:7,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
-      stocklargecap:20,
-      stockforeign:20,
       bond:20,
+      stocklargecap:25,
+      stockmidcap:25,
+      stockforeign:25,
+      stocksmallcap:5,
     }
   },
   {
     label:"Low Risk",
     value:8,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
+      bond:10,
       stocklargecap:20,
+      stockmidcap:40,
       stockforeign:20,
-      bond:20,
+      stocksmallcap:10,
     }
   },
   {
     label:"High Risk",
     value:9,
     profile:{
-      stocksmallcap:20,
-      stockmidcap:20,
+      bond:5,
       stocklargecap:20,
+      stockmidcap:40,
       stockforeign:20,
-      bond:20,
+      stocksmallcap:10,
     }
   },
   {
     label:"Maximum Risk",
     value:10,
     profile:{
-      stocksmallcap:30,
-      stockmidcap:30,
-      stocklargecap:10,
-      stockforeign:30,
       bond:0,
+      stocklargecap:5,
+      stockmidcap:25,
+      stockforeign:30,
+      stocksmallcap:40,
     }
   },
 ];

@@ -8,16 +8,21 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
 import {
-    makeSelectAllocationPage,
+    selectRiskAllocations,
     sumAllocations,
-    makeInstructionData
+    makeInstructionData,
+    selectTargetRisk
   } from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
-import {defaultAction} from './actions';
+import { defaultAction } from './actions';
+import { TRANSACTION_COST } from './constants';
+import {
+    makeSelectRisklevel,
+    makeSelectChartData
+  } from '../RiskPage/selectors';
 
-import {makeSelectRisklevel, makeSelectChartData} from '../FunPage/selectors';
 
 // CSS & Presentation
 import styled from 'styled-components';
@@ -33,60 +38,71 @@ text-align:right;
 
 export class AllocationPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    console.log('AllocationPage:',
-      `risklevel:${this.props.risklevel}`,
-      this.props.riskdata);
+    console.log('AllocationPage:', this.props.sample);
     let dataRows = (
-        Object.entries(this.props.allocations)
-          .map((object, i) => {
-            let percentAllocated = (object[1] / this.props.total) * 100;
-            let targetRisk = this.props.riskdata[object[0]];
-            let difference = <span></span>
-            let targetCash = this.props.total * (targetRisk/100);
-            let targetDifference = targetCash - object[1];
-            if (percentAllocated.toFixed(2) !== targetRisk.toFixed(2))
-            {
-              difference = (<span>{targetDifference.toFixed(2)}</span>)
-            }
+        this.props.sample.map(
+          (object, i) => {
             return (<tr key={i}>
-              <td><label>{object[0]}</label></td>
+              <td><label>{object.name}</label></td>
               <NumberTd>
                 <TextInput
                   type="number"
-                  name={object[0]}
-                  id={object[0]}
-                  placeholder={object[1]}
+                  name={object.category}
+                  id={object.category}
+                  placeholder={0}
                   onChange={this.props.onAllocationChange} />
               </NumberTd>
               <NumberTd>
-                {percentAllocated.toFixed(2)}%
+              {object.currentPerAllocated.toFixed(0)}%
               </NumberTd>
               <NumberTd>
-                {targetRisk}%
-              </NumberTd>
-              <NumberTd>
-                {difference}
+              {object.targetCash.toFixed(0)}
               </NumberTd>
             </tr>)
-    })); //dataRows
+          })); //dataRows
 
+      let instructions = (
+        this.props.sample
+          .map((object, i) => {
+              let action = "";
+              if (object.targetDifference < 0) {
+                action = "Sell";
+              } else if (object.targetDifference > 0) {
+                action = "Buy";
+              }
+              if (action !== "") {
+                let string = `${action} $${Math.abs(object.targetDifference.toFixed(2))} ${object.name}`;
+                return (
+                  <li key={object.category}>{string}</li>
+            )}})
+          .filter(instr => instr !== undefined));
+      console.log("instructions", instructions);
+      let instructionBlock = undefined;
+      if (instructions.length > 0) {
+        instructionBlock = (
+          <div className="instructionBlock">
+            <h3>Based on your current allocation you should make some adjustments.</h3>
+            <ul>
+              {instructions}
+            </ul>
+          </div>
+        )
+      }
     return (
       <div>
-        <p>selected risk: {this.props.risklevel}</p>
-        <h1>What is your current allocation?</h1>
+        <h1>How much do you have invested in each category?</h1>
         <table>
         <tbody>
           <tr>
             <th>Category</th>
             <th>Your amount</th>
-            <th>Current %</th>
-            <th>Desired %</th>
-            <th>You need</th>
+            <th>% allocated</th>
+            <th>Target</th>
           </tr>
           {dataRows}
         </tbody>
         </table>
-        <div>Total: {this.props.total}</div>
+        {instructionBlock}
       </div>
     );
   }
@@ -97,11 +113,11 @@ AllocationPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  allocations: makeSelectAllocationPage(),
+  allocations: selectRiskAllocations(),
   total: sumAllocations(),
-  risklevel: makeSelectRisklevel(),
+  // risklevel: makeSelectRisklevel(),
   riskdata: makeSelectChartData(),
-  instructions:makeInstructionData(),
+  sample:selectTargetRisk(),
 });
 
 function mapDispatchToProps(dispatch) {
