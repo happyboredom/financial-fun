@@ -13,7 +13,7 @@ import {makeSelectRisklevel, makeSelectChartData} from './selectors';
 import reducer from './reducer';
 import RiskButton from 'components/RiskButton';
 import RiskTable from 'components/RiskTable';
-import { setRiskLevel } from '../HomePage/actions';
+import { setRiskLevel } from './actions';
 import {convertToTableData, convertToChartData, sampledata} from './sampledata';
 // CSS & Presentation
 import styled from 'styled-components';

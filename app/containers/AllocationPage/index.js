@@ -6,24 +6,21 @@ import { compose } from 'redux';
 import { Grid, Row, Col, Panel,
         Button, Table, FormControl } from 'react-bootstrap';
 
-import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import {
+    makeSelectRisklevel,
+    makeSelectChartData
+  } from '../RiskPage/selectors';
+
 import {
     selectRiskAllocations,
     sumAllocations,
     selectTargetRisk,
     selectRiskSummary,
   } from './selectors';
-import {
-    makeSelectRisklevel,
-    makeSelectChartData
-  } from '../RiskPage/selectors';
-
 import reducer from './reducer';
-import saga from './saga';
 import { inputAllocationAction, calculateAllocations } from './actions';
 import { TRANSACTION_COST } from './constants';
-
 
 // CSS & Presentation
 import styled from 'styled-components';
@@ -166,10 +163,8 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'allocationPage', reducer });
-const withSaga = injectSaga({ key: 'allocationPage', saga });
 
 export default compose(
   withReducer,
-  withSaga,
   withConnect,
 )(AllocationPage);
