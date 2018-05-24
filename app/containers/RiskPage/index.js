@@ -49,8 +49,10 @@ export class FunPage extends React.PureComponent { // eslint-disable-line react/
           onClickRow={this.props.onRiskSelectRow}
           onClick={this.props.onRiskSelect}></RiskTable>
         </Panel.Body>
-        <Button block bsStyle="primary" bsSize="large"
-            href="/allocation">OK! Adjust allocation</Button>
+        {/* must use react-router-dom Link to preserve state! */}
+        <Link to="/allocation" className="btn btn-block btn-lg btn-primary">
+        OK! Adjust allocation
+        </Link>
       </Panel>
     </Col>
     <Col xs={12} md={4}>

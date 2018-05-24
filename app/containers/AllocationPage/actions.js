@@ -16,7 +16,6 @@ import {
 
 
 export function setRiskLevel(val) {
-  console.log(`HomePage/actions::setRiskLevel ${val}`);
   return {
     type: RISK_PICKED,
     risklevel:val,
@@ -24,8 +23,9 @@ export function setRiskLevel(val) {
 }
 
 
-export function defaultAction(evt) {
+export function inputAllocationAction(evt) {
   let target = evt.target;
+  let val = target.value;
   return {
     type: DEFAULT_ACTION,
     name: target.name,

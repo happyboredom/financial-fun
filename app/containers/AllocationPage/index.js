@@ -21,26 +21,18 @@ import {
 
 import reducer from './reducer';
 import saga from './saga';
-import { defaultAction, calculateAllocations } from './actions';
+import { inputAllocationAction, calculateAllocations } from './actions';
 import { TRANSACTION_COST } from './constants';
 
 
 // CSS & Presentation
 import styled from 'styled-components';
-const TextInput = styled.input`
-border:1px solid red;
-border-radius:8px;
-text-align:right;
-`
-
 const NumberTd = styled.td`
 text-align:right;
 `
 
 export class AllocationPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    console.log('riskSummary', this.props.riskSummary.label);
-
     let dataRows = (
         this.props.pagedata.map(
           (object, i) => {
@@ -48,15 +40,18 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
               <td><label>{object.name}</label></td>
               <NumberTd>
                 <FormControl
-                  bsSize="large"
-                  type="text"
+                  type="number"
                   label={object.category}
                   name={object.category}
                   id={object.category}
-                  placeholder="0" />
+                  placeholder="0"
+                  min={0} />
               </NumberTd>
               <NumberTd>
               {object.targetAlloc}%
+              </NumberTd>
+              <NumberTd>
+              ${object.targetCash}
               </NumberTd>
             </tr>)
           })); //dataRows
@@ -104,12 +99,18 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
           <thead>
             <tr>
               <th>Category</th>
-              <th>Your $ invested</th>
-              <th>Target Risk %</th>
+              <th>$ invested</th>
+              <th>Target %</th>
+              <th>Target $</th>
             </tr>
           </thead>
           <tbody>
             {dataRows}
+            <tr>
+              <NumberTd colSpan="2"><strong>Total</strong></NumberTd>
+              <NumberTd>100%</NumberTd>
+              <NumberTd>${this.props.total}</NumberTd>
+            </tr>
           </tbody>
         </Table>
         <Button block
@@ -146,17 +147,16 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onAllocationChange: (evt) => {
-      return dispatch(defaultAction(evt));
+      return dispatch(inputAllocationAction(evt));
     },
     onGetCalculations: (evt) => {
       // grabs the form values and calculate
       evt.preventDefault();
-
       // force NodeList into proper Array.
       let allocationValues = {};
-      evt.target.querySelectorAll('input[type=text]')
+      evt.target.querySelectorAll('input[type=number]')
         .forEach((val) => {
-          allocationValues[val.name] = parseFloat(val.value || 0.0);
+          allocationValues[val.name] = Math.abs(parseFloat(val.value || 0.0));
         });
       return dispatch(calculateAllocations(allocationValues));
     },
