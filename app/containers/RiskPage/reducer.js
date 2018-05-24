@@ -14,9 +14,7 @@ const initialState = fromJS({
   riskdata: getRiskLevelProfile(DEFAULT_RISK),
 });
 
-function funPageReducer(state = initialState, action) {
-  console.log(`funPageReducer::${action.type}=${action.risklevel}`);
-  console.log('funPageReducer state', state);
+function riskPageReducer(state = initialState, action) {
   switch (action.type) {
     case RISK_PICKED:
       return state
@@ -28,4 +26,4 @@ function funPageReducer(state = initialState, action) {
   }
 }
 
-export default funPageReducer;
+export default riskPageReducer;

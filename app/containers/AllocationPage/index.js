@@ -15,7 +15,7 @@ import {
 import {
     selectRiskAllocations,
     sumAllocations,
-    selectTargetRisk,
+    selectCalculatedRiskData,
     selectRiskSummary,
   } from './selectors';
 import reducer from './reducer';
@@ -48,7 +48,7 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
               {object.targetAlloc}%
               </NumberTd>
               <NumberTd>
-              ${object.targetCash}
+              ${object.targetCash.toFixed(2)}
               </NumberTd>
             </tr>)
           })); //dataRows
@@ -56,14 +56,24 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
     let instructions = (this.props.pagedata.map(
         (object, i) => {
             let action = "";
+            let desc = "";
             if (object.targetDifference < 0) {
               action = "Sell";
+              desc = "too much";
             } else if (object.targetDifference > 0) {
               action = "Buy";
+              desc = "too little";
             }
             if (action !== "") {
-              let string = `${action} $${Math.abs(object.targetDifference).toFixed(2)} ${object.name}`;
-              return (<li key={object.category}>{string}</li>)}
+              let string = `${action} $${Math.abs(object.targetDifference).toFixed(2)} in ${object.name}`;
+              return (
+                <div key={object.category}>
+                <dt>{object.name}</dt>
+                <dd>
+                You have {desc} money
+                in {object.name}. {string} to
+                reach your {object.targetAlloc.toFixed(0)}% target allocation.</dd>
+              </div>)}
             })
         .filter(instr => instr !== undefined));
       let instructionBlock = undefined;
@@ -73,9 +83,9 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
             <h3>Based on your portfolio of ${this.props.total.toFixed(2)} you
               should make some adjustments to achieve
               a <em style={{color:'red'}}>{this.props.riskSummary.label}</em> portfolio.</h3>
-            <ul>
+            <dl>
               {instructions}
-            </ul>
+            </dl>
           </div>
         )
       }
@@ -136,7 +146,7 @@ AllocationPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  pagedata:selectTargetRisk(),
+  pagedata:selectCalculatedRiskData(),
   total:sumAllocations(),
   riskSummary:selectRiskSummary(),
 });

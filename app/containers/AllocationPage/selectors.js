@@ -38,7 +38,7 @@ export const selectRiskSummary = () => createSelector(
   }
 );
 
-export const selectTargetRisk = () => createSelector(
+export const selectCalculatedRiskData = () => createSelector(
   selectAllocationPageDomain,
   selectRiskAllocations(),
   makeSelectChartData(),
