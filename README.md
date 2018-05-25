@@ -33,6 +33,9 @@ npm run build
 > look in ./build dir
 ```
 
+Activity log
+----
+see [/timesheet.md](timesheet.md) file.
 
 Acknowledgements
 ----
