@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import { AllocationPage } from '../index';
 
 describe('<AllocationPage />', () => {
-  it('Expect to have unit tests specified', () => {
+  it('Expect to render page', () => {
     const component = renderer.create(
       <AllocationPage
         pagedata={[]}

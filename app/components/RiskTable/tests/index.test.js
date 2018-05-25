@@ -1,10 +1,14 @@
-// import React from 'react';
-// import { shallow } from 'enzyme';
+import React from 'react';
 
-// import RiskTable from '../index';
+import { shallow } from 'enzyme';
+import RiskTable from '../index';
 
 describe('<RiskTable />', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('Render a table', () => {
+    const table = shallow(
+      <RiskTable
+        data={[]}
+      />);
+    expect(table.find('tr').length).toBe(1);
   });
 });
