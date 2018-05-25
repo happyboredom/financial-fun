@@ -1,3 +1,9 @@
+See it in action
+----
+
+https://youtu.be/BmvwgRanltY
+
+
 Grab from github and install npm packages.
 ----
 
@@ -27,6 +33,9 @@ npm run build
 > look in ./build dir
 ```
 
+Activity log
+----
+see [/timesheet.md](timesheet.md) file.
 
 Acknowledgements
 ----
