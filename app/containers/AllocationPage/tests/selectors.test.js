@@ -1,8 +1,7 @@
-// import { fromJS } from 'immutable';
-// import { selectAllocationPageDomain } from '../selectors';
+import { sum } from '../selectors';
 
-describe('selectAllocationPageDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+describe('sumArray', () => {
+  it('Expect array sum', () => {
+    expect(sum([1,2,3])).toEqual(6);
   });
 });

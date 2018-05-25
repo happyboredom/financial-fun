@@ -1,13 +1,12 @@
 /* FunPage/reducer.js */
 import { fromJS } from 'immutable';
 import {
-    getRiskLevel,
     getRiskLevelProfile,
-    convertToChartData } from './sampledata';
+  } from './sampledata';
 import {
   RISK_PICKED,
   DEFAULT_RISK,
-} from '../RiskPage/constants';
+  } from '../RiskPage/constants';
 
 const initialState = fromJS({
   risklevel: DEFAULT_RISK,

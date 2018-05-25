@@ -18,24 +18,23 @@ import {
 export function setRiskLevel(val) {
   return {
     type: RISK_PICKED,
-    risklevel:val,
+    risklevel: val,
   };
 }
 
 
 export function inputAllocationAction(evt) {
-  let target = evt.target;
-  let val = target.value;
+  const target = evt.target;
   return {
     type: DEFAULT_ACTION,
     name: target.name,
-    value: target.value
+    value: target.value,
   };
 }
 
 export function calculateAllocations(formvalues) {
   return {
     type: CALCULATE_ALLOCATIONS_ACTION,
-    value: formvalues
-  }
+    value: formvalues,
+  };
 }

@@ -1,9 +1,19 @@
 
 import { fromJS } from 'immutable';
-import funPageReducer from '../reducer';
+import riskPageReducer from '../reducer';
+import {
+  DEFAULT_RISK,
+  } from '../../RiskPage/constants';
 
-describe('funPageReducer', () => {
+import {
+    getRiskLevelProfile,
+  } from '../sampledata';
+
+describe('riskPageReducer', () => {
   it('returns the initial state', () => {
-    expect(funPageReducer(undefined, {})).toEqual(fromJS({}));
+    expect(riskPageReducer(undefined, {})).toEqual(fromJS({
+      risklevel: DEFAULT_RISK,
+      riskdata: getRiskLevelProfile(DEFAULT_RISK),
+    }));
   });
 });

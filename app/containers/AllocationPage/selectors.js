@@ -7,7 +7,7 @@ import { makeSelectRisklevel, makeSelectChartData } from '../RiskPage/selectors'
 
 const selectAllocationPageDomain = (state) => state.get('allocationPage');
 
-const sum = (values) => {
+export const sum = (values) => {
   return values.reduce((acc, cur) => { return acc+cur}, 0);
 }
 
