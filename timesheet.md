@@ -1,40 +1,33 @@
-I know relatively little about react and all the front-end architecture. Best way to figure this out is to learn-by-doing.
+The total project time took quite a while because I chose to learn a bit more about react/redux and some of the newer front-end tools that I haven't used before. I figured the best way to learn all this new stuff is to learn-by-doing.
 
-Learning and debugging react-redux (8hrs)
+Learning and debugging react-redux (8-10hrs)
 ---
 * I picked `react-boilerplate` to start learning react/redux because it's the first thing I Googled
- * set up and install `react-boilerplate`
- * so many new things to learn here... need to figure out how these work:
-   * webpack
-   * redux
-   * ES6/7 syntax
- * Make a basic react component `RiskButton`
-  * from boilerplate ... `npm run generate`
-  * Ecmascript 6/7 syntax is so different from what plain old JS...
- * how does a component interact with redux?
-  * intro to redux...
- * the `react-boilerplate` is very opinionated on structure. It is taking some time to understand what parts I need to edit.
-  * look at `react-boilerplate` to create my first reducer.
-   * what is this package `reselect`? and why is it useful? https://www.npmjs.com/package/reselect
-   * stuck in debugging hell trying to get redux to connect properly to the state props.
-   * after 2 or 3 hours I couldn't figure out why the component was broken and the error messaging is too vague. I started a new component and appears to be working even though the code is almost identical! Go figure. I still don't know why the original stopped working. Sometimes that's just how it goes. Having stared at this react/redux code for a couple of hours trying to identify the problem I am more familiar with its patterns.
- * watch short video on youtube about redux mapStateToProps and mapDispatchToProps: makes total sense now. Now I'm in the groove.
+ * Set up and install `react-boilerplate`
+ * So many new things to learn in the boilerplate... I had to figure out how all these work:
+  * webpack
+  * redux, especially the concept of selectors and `mapPropsToState` and `mapDispatchToProps`. Those took a while to figure out.
+  * ES6/7 syntax is also new to me but I learned Coffeescript a while ago so it turned out to be relatively quick to pick    
+  * the `react-boilerplate` has an opinionated structure. It took serious time to understand everything the things I needed to change in order to get the app to work.
+n   * what is this package `reselect`? and why is it useful? https://www.npmjs.com/package/reselect
+    * stuck in debugging hell trying to get redux to connect properly to the state props.
+    * Roadblock: I spent a long time trying to debug some browser error problems because I was trying to edit code from the boiler plate. When I started a fresh new component it started to work even though the code is almost identical! Go figure. I still don't know why the original stopped working. Sometimes that's just how it goes. 
+    * After staring at the code for quite a while I feel I ccan finally be productive.
 
-Building the app (12hrs)
+Building the app (10hrs)
 ----
-* Design Table view
-* Learn a little about css-grid
-* tinkering with graphing libraries. `react-easy-chart` plugged into my boilerplate environment very easily! Thank goodness.
-* Now, how do I preserve state when I move to page 2?
+* (2hr) Code up the `RiskTable` view and `RiskButton` components
+* (1hr) tinkering with graphing libraries. `react-easy-chart` plugged into my boilerplate environment very easily! Thank goodness.
+* (1hr) How do I preserve state when I move to page 2?
  * Discover and use `react-router-dom` lib. Very cool.
-* fiddling around with displaying data and refactoring sampledata
- * (4hr) Build the datatable but refactor to pull the business logic out of the JSX and put it into the selectors file.
- * try out a couple different css libraries. `react-bootstrap` works well enough.
-*
-* re-design app using bootstrap.
+* (3hr) I refactored various views and components as I re-considered the rendering logic. Probably wasted too much time on that.
+ * Build the datatable but refactor to pull the business logic out of the JSX and put it into the selectors file.
+* (1hr) Learn some new css grid tricks (`display:grid`) which I ended up throwing out because I decided to use a bootstrap based library instead.
+ * After trying a few different css libraries. I decided `react-bootstrap` works easiest for me.
+ * re-designed app using bootstrap.
 
-Cleaning up (2hrs)
+Cleaning up (3hrs)
 ---
-* refactor code. delete as much boilerplate as I can without breaking app.
-* add documentation
-* testing?
+* write tests for the code. 
+* delete as much boilerplate as I can without breaking app.
+* Add documentation
