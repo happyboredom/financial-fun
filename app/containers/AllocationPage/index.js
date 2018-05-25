@@ -59,7 +59,7 @@ export class AllocationPage extends React.PureComponent { // eslint-disable-line
         return (<div key={object.category}>
           <dt>{object.name}</dt>
           <dd>
-            You have {desc}
+            You have {desc} &zwnj;
             money in {object.name}. {inString}
             to reach your {object.targetAlloc.toFixed(0)}% target allocation.</dd>
         </div>);
