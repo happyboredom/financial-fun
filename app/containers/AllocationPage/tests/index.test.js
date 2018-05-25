@@ -1,18 +1,16 @@
 import React from 'react';
-// import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 import { AllocationPage } from '../index';
 
 describe('<AllocationPage />', () => {
-  it('Expect to render page', () => {
-    const component = renderer.create(
+  it('Expect 4 columns in header row', () => {
+    const component = shallow(
       <AllocationPage
         pagedata={[]}
         dispatch={() => null}
         riskSummary={{}}
       />
     );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(component.find('th').length).toBe(4);
   });
 });
