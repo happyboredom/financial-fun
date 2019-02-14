@@ -1,9 +1,12 @@
 /**
- * Asynchronously loads the component for HomePage
+ *
+ * Asynchronously loads the component for EmailPreview
+ *
  */
+
 import Loadable from 'react-loadable';
 
 export default Loadable({
   loader: () => import('./index'),
-  loading: () => <div>Loading...</div>,
+  loading: () => null,
 });

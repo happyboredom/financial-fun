@@ -18,6 +18,10 @@ import { makeSelectRisklevel, makeSelectChartData } from './selectors';
 import { setRiskLevel } from './actions';
 import { convertToTableData, convertToChartData, sampledata } from './sampledata';
 
+
+import EmailTester from 'components/EmailTester';
+
+
 const PieContainer = styled.div`
 text-align:center;
 `;
@@ -40,6 +44,7 @@ export class FunPage extends React.PureComponent { // eslint-disable-line react/
       <Grid fluid>
         <Row className="show-grid">
           <Col xs={12} md={8}>
+<EmailTester className="foo" style={ {border: "1px solid blue"} } text="hello">Hello fun doodily.</EmailTester>
             <h1>First, pick your desired risk level from the table below.</h1>
             <Panel>
               <Panel.Heading>

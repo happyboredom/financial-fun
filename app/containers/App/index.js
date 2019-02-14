@@ -14,6 +14,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import EmailPreview from 'containers/EmailPreview/Loadable';
 import FunPage from 'containers/RiskPage/Loadable';
 import AllocationPage from 'containers/AllocationPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -22,8 +23,7 @@ export default function App() {
   return (
     <div id="appwrap">
       <Switch>
-        <Route exact path="/" component={FunPage} />
-        <Route exact path="/allocation" component={AllocationPage} />
+        <Route exact path="/" component={EmailPreview} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

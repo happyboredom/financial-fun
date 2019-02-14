@@ -4,7 +4,6 @@ import { Table } from 'react-bootstrap';
 
 import RiskButton from '../RiskButton';
 
-
 function RiskTable(props) { // eslint-disable-line react/prefer-stateless-function
   return (
     <Table striped bordered hover responsive className="risktable">

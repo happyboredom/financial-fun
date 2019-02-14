@@ -192,6 +192,7 @@
       "!app/global-styles.js",
       "!app/*/*/Loadable.{js,jsx}"
     ],
+    "testPathIgnorePatterns":["<rootDir>/.c9", "<rootDir>/node_modules"],
     "coverageThreshold": {
       "global": {
         "statements": 98,
