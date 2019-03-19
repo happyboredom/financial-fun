@@ -11,6 +11,7 @@ import {
   ACTION_MAGAZINE_SUCCESS,
   ACTION_MAGAZINE_ERROR,
   ACTION_MAGAZINE_TOGGLE,
+  ACTION_CLEAR_SELECTED,
   ACTION_SHOW_HTML,
 } from './constants';
 
@@ -42,6 +43,9 @@ function emailPreviewReducer(state = initialState, action) {
       } else if (state.getIn(['emailPreview', 'selected', action.data.sourceURL])) {
         return state.deleteIn(['emailPreview', 'selected', action.data.sourceURL]);
       }
+    case ACTION_CLEAR_SELECTED:
+      console.log("reducer clear selected", ACTION_CLEAR_SELECTED);
+      return state.setIn(['emailPreview', 'selected'], fromJS({})); 
     case ACTION_SHOW_HTML:
       console.log(ACTION_SHOW_HTML);
       return state.setIn(['emailPreview', 'showhtmlview'], true);

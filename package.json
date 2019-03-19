@@ -192,7 +192,10 @@
       "!app/global-styles.js",
       "!app/*/*/Loadable.{js,jsx}"
     ],
-    "testPathIgnorePatterns":["<rootDir>/.c9", "<rootDir>/node_modules"],
+    "testPathIgnorePatterns": [
+      "<rootDir>/.c9",
+      "<rootDir>/node_modules"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 98,
@@ -220,12 +223,15 @@
     "express": "4.15.3",
     "fontfaceobserver": "2.0.9",
     "foundation-sites": "^6.4.4-rc1",
+    "grommet": "^2.5.5",
+    "grommet-icons": "^4.2.0",
     "history": "4.6.3",
     "hoist-non-react-statics": "2.1.1",
     "immutable": "3.8.1",
     "intl": "1.2.5",
     "invariant": "2.2.2",
     "ip": "1.1.5",
+    "jquery": "^3.3.1",
     "lodash": "4.17.4",
     "minimist": "1.2.0",
     "normalizr": "^3.2.4",
@@ -247,11 +253,13 @@
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
     "sanitize.css": "4.1.0",
-    "styled-components": "2.0.0",
+    "styled-components": "^2.0.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
     "add-asset-html-webpack-plugin": "2.0.1",
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",

@@ -20,19 +20,30 @@ import saga from './saga';
 import { 
   fetchMagazine,
   toggleMagazineSelection,
-  actionShowHtml } from './actions';
+  actionShowHtml,
+  actionClearSelected } from './actions';
 
 import EmailTester from 'components/EmailTester';
 
 const EmailGrid = styled.div`
 display: grid;
-grid-template-columns: 1fr 1fr;
 grid-gap: 10px;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: auto;
+grid-template-areas: "left right_upper"
+                      "left right_lower"
+                      "left right_lower"
+                      "left right_lower";
 background-color: #ededed;
 `;
 
 const SelectedPane = styled.div`
 border:1px solid green;
+grid-area right_lower;
+`;
+
+const ChoosePane = styled.div`
+grid-area:left;
 `;
 
 const ConstrainedImg = styled.img`
@@ -45,7 +56,7 @@ border:1px solid red;
 `;
 
 const HtmlPreview = styled.textarea`
-width:100%
+grid-area: right_upper;
 `;
 
 function cleanHtml(text) {
@@ -146,21 +157,21 @@ export class EmailPreview extends React.PureComponent { // eslint-disable-line r
   }
   
   render() {
-    
-    
     return (
       <div>
-        <HtmlPreview value={this.renderJSONSnippet()} readOnly></HtmlPreview>
         <EmailGrid>
+          <ChoosePane>
           <EmailTester className="foo" style={ {border: "1px solid blue"} } text="hello">
             <h1>{this.props.magazine.length}</h1>
             <div className='col1'>{this.renderList()}</div>
             <button onClick={this.props.onFetchMagazine}>Fetch Magazine</button>
           </EmailTester>
+          </ChoosePane>
           <SelectedPane>
-            <div className='col2' onClick={this.props.onShowHtml}>Click this</div>
+            <div className='col2' onClick={this.props.onClearSelected}>Click this</div>
             {this.renderSelected(MagazineDisplayRow)}
           </SelectedPane>
+          <HtmlPreview value={this.renderJSONSnippet()} readOnly></HtmlPreview>
         </EmailGrid>
       </div>
     );
@@ -183,6 +194,7 @@ function mapDispatchToProps(dispatch) {
     onFetchMagazine: evt => dispatch(fetchMagazine()),
     onChangeMagazineCheckbox: (evt, data) => dispatch(toggleMagazineSelection(evt, data)),
     onShowHtml: evt => dispatch(actionShowHtml()),
+    onClearSelected: evt=>dispatch(actionClearSelected()),
     dispatch,
   };
 }

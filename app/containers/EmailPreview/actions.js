@@ -10,6 +10,7 @@ import {
   ACTION_MAGAZINE_SUCCESS,
   ACTION_MAGAZINE_ERROR,
   ACTION_MAGAZINE_TOGGLE,
+  ACTION_CLEAR_SELECTED,
   ACTION_SHOW_HTML
 } from './constants';
 
@@ -40,7 +41,6 @@ export function gotMagazineError(err) {
 }
 
 export function toggleMagazineSelection(evt, data) {
-  console.log("toggleMagazineSelection", evt, data);
   return {
     type: ACTION_MAGAZINE_TOGGLE,
     data: data,
@@ -51,5 +51,11 @@ export function toggleMagazineSelection(evt, data) {
 export function actionShowHtml() {
   return {
     type: ACTION_SHOW_HTML
+  }
+}
+
+export function actionClearSelected() {
+  return {
+    type: ACTION_CLEAR_SELECTED
   }
 }

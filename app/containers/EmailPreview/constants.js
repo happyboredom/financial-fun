@@ -20,4 +20,5 @@ export const ACTION_MAGAZINE_ERROR = 'app/EmailPreview/MAGAZINE_ERROR';
 export const ACTION_MAGAZINE_SUCCESS = 'app/EmailPreview/MAGAZINE_SUCCESS';
 export const ACTION_MAGAZINE_FETCH = 'app/EmailPreview/MAGAZINE_FETCH';
 export const ACTION_MAGAZINE_TOGGLE = 'app/EmailPreview/MAGAZINE_TOGGLE';
+export const ACTION_CLEAR_SELECTED = 'app/EmailPreview/ACTION_CLEAR_SELECTED';
 export const ACTION_SHOW_HTML = 'app/EmailPreview/HTML_SHOW';
